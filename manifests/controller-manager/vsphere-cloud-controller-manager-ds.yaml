@@ -31,8 +31,12 @@ spec:
       - key: node.cloudprovider.kubernetes.io/uninitialized
         value: "true"
         effect: NoSchedule
-      - key: node-role.kubernetes.io/master
+      - key: node-role.kubernetes.io/controlplane
+        value: "true"
         effect: NoSchedule
+      - key: node-role.kubernetes.io/etcd
+        value: "true"
+        effect: NoExecute
       serviceAccountName: cloud-controller-manager
       containers:
         - name: vsphere-cloud-controller-manager
